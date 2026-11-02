@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log ind · Opally</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700&family=Instrument+Serif&display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="soft">
+  <header class="topbar">
+    <a href="/" class="brand">Opally <span>Hittegods</span></a>
+  </header>
+
+  <main class="login-wrap">
+    <form id="login-form" class="card form">
+      <p class="eyebrow">For hotellets personale</p>
+      <h1>Log ind</h1>
+      <label>Email <input type="email" name="email" id="email" required autocomplete="username"></label>
+      <label>Password <input type="password" name="password" id="password" required autocomplete="current-password"></label>
+      <p class="error" id="login-error" hidden></p>
+      <button type="submit" class="btn primary block">Log ind <span class="arrow">→</span></button>
+    </form>
+  </main>
+
+  <script src="/js/login.js"></script>
+</body>
+</html>

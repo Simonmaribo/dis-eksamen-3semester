@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hittegods · Opally</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700&family=Instrument+Serif&display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="soft">
+  <header class="topbar">
+    <a href="/personale" class="brand">Opally <span>Hittegods · Hotel Kastanje</span></a>
+    <div class="topbar-user">
+      <span id="staff-name"></span>
+      <button type="button" class="btn small" id="logout-btn">Log ud</button>
+    </div>
+  </header>
+
+  <main class="page wide">
+    <div class="dash-head">
+      <h1>Hittegods</h1>
+      <nav class="tabs" role="tablist">
+        <button type="button" class="tab active" data-tab="cases">Sager <span class="count" id="open-count"></span></button>
+        <button type="button" class="tab" data-tab="found">Fundne ting</button>
+        <button type="button" class="tab" data-tab="staff" id="staff-tab" hidden>Medarbejdere</button>
+      </nav>
+    </div>
+
+    <p class="error" id="page-error" hidden></p>
+
+    <!-- Sager fra kunder -->
+    <section class="panel" id="panel-cases">
+      <div class="filters">
+        <label><input type="radio" name="case-filter" value="aktive" checked> Aktive</label>
+        <label><input type="radio" name="case-filter" value="alle"> Alle</label>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Sag</th><th>Beskrivelse</th><th>Mistet</th><th>Kunde</th><th>Status</th><th></th></tr>
+          </thead>
+          <tbody id="cases-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Fundne ting -->
+    <section class="panel split" id="panel-found" hidden>
+      <form id="found-form" class="card form">
+        <h2>Registrér fundet ting</h2>
+        <label>Beskrivelse <input type="text" name="description" required maxlength="500" placeholder="Fx sort lædertaske"></label>
+        <label>Fundet dato <input type="date" name="found_date" id="found_date" required></label>
+        <label>Sted
+          <select name="location" required>
+            <option value="">Vælg sted</option>
+            <option>Værelse</option>
+            <option>Restaurant</option>
+            <option>Bar</option>
+            <option>Lobby</option>
+            <option>Spa og fitness</option>
+            <option>Mødelokale</option>
+            <option>Andet</option>
+          </select>
+        </label>
+        <label>Billede <input type="file" name="image" accept="image/*"></label>
+        <p class="error" id="found-error" hidden></p>
+        <button type="submit" class="btn primary block" id="found-submit">Gem fundet ting</button>
+      </form>
+
+      <div class="found-grid" id="found-list"></div>
+    </section>
+
+    <!-- Medarbejdere (kun admin) -->
+    <section class="panel staff-split" id="panel-staff" hidden>
+      <form id="staff-form" class="card form">
+        <h2>Opret medarbejder</h2>
+        <label>Navn <input type="text" name="name" required maxlength="100"></label>
+        <label>Email <input type="email" name="email" required maxlength="255"></label>
+        <label>Midlertidigt password <input type="password" name="password" required minlength="8" autocomplete="new-password"></label>
+        <label class="check"><input type="checkbox" name="is_admin"> Admin</label>
+        <p class="error" id="staff-error" hidden></p>
+        <button type="submit" class="btn primary block">Opret medarbejder</button>
+      </form>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Navn</th><th>Email</th><th>Rolle</th></tr></thead>
+          <tbody id="staff-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/staff.js"></script>
+</body>
+</html>

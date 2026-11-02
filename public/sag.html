@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Din sag · Hotel Kastanje · Opally</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700&family=Instrument+Serif&display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="soft">
+  <header class="topbar">
+    <a href="/" class="brand">Opally <span>Hittegods</span></a>
+  </header>
+
+  <main class="page narrow">
+    <p class="muted" id="loading">Henter din sag …</p>
+    <p class="error" id="error" hidden></p>
+
+    <section id="case" hidden>
+      <p class="eyebrow">Hotel Kastanje · Sag <span id="case-number"></span></p>
+      <h1 id="status-label"></h1>
+
+      <ol class="steps" id="steps">
+        <li data-step="soeges">Sag oprettet</li>
+        <li data-step="fundet">Fundet, klar til afhentning</li>
+        <li data-step="udleveret">Udleveret</li>
+      </ol>
+
+      <p class="card pickup" id="pickup" hidden>Hent tingen i receptionen og oplys sagsnummer <strong id="pickup-number"></strong>.</p>
+
+      <dl class="card details">
+        <dt>Beskrivelse</dt><dd id="description"></dd>
+        <dt>Mistet</dt><dd id="lost"></dd>
+        <dt>Oprettet</dt><dd id="created"></dd>
+      </dl>
+
+      <p class="powered">Hittegods drives af Opally for Hotel Kastanje.</p>
+    </section>
+  </main>
+
+  <script src="/js/case.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hittegods · Hotel Kastanje · Opally</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700&family=Instrument+Serif&display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="topbar dark">
+    <a href="/" class="brand">Opally <span>Hittegods</span></a>
+    <a href="/login" class="btn glass small">Log ind</a>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="eyebrow">Hotel Kastanje · Hittegods</p>
+        <h1>Har du glemt noget hos os?</h1>
+        <p class="lead">Fortæl os, hvad du har mistet, så leder vi efter det. Du får besked, så snart vi finder det. Du kan også bare sende en SMS til hotellets nummer.</p>
+        <div class="hero-actions">
+          <a href="#report-form" class="btn light">Opret en sag <span class="arrow">→</span></a>
+        </div>
+      </div>
+
+      <div>
+        <form id="report-form" class="card form">
+          <div class="card-head">
+            <span>Ny hittegodssag</span>
+            <span class="live">Receptionen tjekker dagligt</span>
+          </div>
+          <div class="row">
+            <label>Navn <input type="text" name="name" id="name" required maxlength="100"></label>
+            <label>Email <input type="email" name="email" id="email" required maxlength="255"></label>
+          </div>
+          <label><span>Telefon <span class="optional">(valgfri)</span></span> <input type="tel" name="phone" id="phone" maxlength="30"></label>
+          <label>Hvad har du mistet? <textarea name="description" id="description" required maxlength="500" rows="3" placeholder="Fx sort lædertaske med guldlynlås"></textarea></label>
+          <div class="row">
+            <label>Hvornår? <input type="date" name="lost_date" id="lost_date" required></label>
+            <label>Hvor?
+              <select name="location" id="location" required>
+                <option value="">Vælg sted</option>
+                <option>Værelse</option>
+                <option>Restaurant</option>
+                <option>Bar</option>
+                <option>Lobby</option>
+                <option>Spa og fitness</option>
+                <option>Mødelokale</option>
+                <option>Andet</option>
+              </select>
+            </label>
+          </div>
+          <p class="error" id="form-error" hidden></p>
+          <button type="submit" class="btn primary block" id="submit-btn">Opret sag <span class="arrow">→</span></button>
+        </form>
+
+        <section class="card success" id="success" hidden>
+          <p class="eyebrow">Sag oprettet</p>
+          <h2>Tak, vi leder efter den</h2>
+          <p>Dit sagsnummer er <span class="case-number-big" id="case-number"></span></p>
+          <p class="muted">Du får en mail, når vi har fundet tingen.</p>
+          <a id="case-link" href="#" class="btn primary">Følg din sag <span class="arrow">→</span></a>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust">
+    <div><span class="check-icon">✓</span><strong>Opret på web eller SMS</strong><span>Skriv til hotellets nummer, så opretter vi sagen for dig</span></div>
+    <div><span class="check-icon">✓</span><strong>Besked når vi finder den</strong><span>På mail eller SMS, samme vej som du kontaktede os</span></div>
+    <div><span class="check-icon">✓</span><strong>Hent med dit sagsnummer</strong><span>Receptionen udleverer tingen mod sagsnummeret</span></div>
+  </section>
+
+  <script src="/js/report.js"></script>
+</body>
+</html>
