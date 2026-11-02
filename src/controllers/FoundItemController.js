@@ -32,7 +32,7 @@ class FoundItemController {
 
       let image_url = null;
       if (req.file) {
-        image_url = await ImageService.upload(req.file.buffer);
+        image_url = await ImageService.upload(req.file);
       }
 
       const item = await FoundItem.create({

@@ -64,7 +64,7 @@ npm run start
 
 Appen kører på http://localhost:3000. Personale logger ind på http://localhost:3000/login.
 
-Uden Twilio-, SMTP- eller Cloudinary-nøgler i `.env` virker appen stadig: SMS'er og mails skrives i konsollen, og billeder springes over.
+Uden Twilio-, SMTP- eller Cloudinary-nøgler i `.env` virker appen stadig: SMS'er og mails skrives i konsollen, og billeder gemmes lokalt i `public/uploads/`.
 
 ### Test SMS-webhook lokalt
 

@@ -23,18 +23,28 @@
       <h1>Hittegods</h1>
       <nav class="tabs" role="tablist">
         <button type="button" class="tab active" data-tab="cases">Sager <span class="count" id="open-count"></span></button>
-        <button type="button" class="tab" data-tab="found">Fundne ting</button>
+        <button type="button" class="tab" data-tab="found">Fundne ting <span class="count" id="unmatched-count"></span></button>
         <button type="button" class="tab" data-tab="staff" id="staff-tab" hidden>Medarbejdere</button>
       </nav>
     </div>
 
-    <p class="error" id="page-error" hidden></p>
+    <!-- Overblik -->
+    <section class="stats" aria-label="Overblik">
+      <div class="stat"><span class="stat-value" id="stat-open">0</span><span class="stat-label">Sager vi leder efter</span></div>
+      <div class="stat"><span class="stat-value" id="stat-ready">0</span><span class="stat-label">Klar til afhentning</span></div>
+      <div class="stat"><span class="stat-value" id="stat-unmatched">0</span><span class="stat-label">Fundne ting uden ejer</span></div>
+    </section>
 
     <!-- Sager fra kunder -->
     <section class="panel" id="panel-cases">
-      <div class="filters">
-        <label><input type="radio" name="case-filter" value="aktive" checked> Aktive</label>
-        <label><input type="radio" name="case-filter" value="alle"> Alle</label>
+      <div class="toolbar">
+        <input type="search" id="case-search" class="search" placeholder="Søg sag, ting eller kunde">
+        <div class="segmented" role="radiogroup" aria-label="Vis sager">
+          <label><input type="radio" name="case-filter" value="aktive" checked><span>Aktive</span></label>
+          <label><input type="radio" name="case-filter" value="soeges"><span>Leder efter</span></label>
+          <label><input type="radio" name="case-filter" value="fundet"><span>Klar</span></label>
+          <label><input type="radio" name="case-filter" value="alle"><span>Alle</span></label>
+        </div>
       </div>
       <div class="table-wrap">
         <table>
@@ -47,10 +57,45 @@
     </section>
 
     <!-- Fundne ting -->
-    <section class="panel split" id="panel-found" hidden>
-      <form id="found-form" class="card form">
+    <section class="panel" id="panel-found" hidden>
+      <div class="toolbar">
+        <div class="segmented" role="radiogroup" aria-label="Vis fundne ting">
+          <label><input type="radio" name="found-filter" value="uden" checked><span>Uden ejer</span></label>
+          <label><input type="radio" name="found-filter" value="alle"><span>Alle</span></label>
+        </div>
+        <button type="button" class="btn primary" id="open-found-dialog">+ Registrér fundet ting</button>
+      </div>
+      <div class="focus-hint" id="focus-hint" hidden>
+        <span id="focus-text"></span>
+        <button type="button" class="btn small" id="clear-focus">Ryd</button>
+      </div>
+      <div class="found-grid" id="found-list"></div>
+    </section>
+
+    <!-- Medarbejdere (kun admin) -->
+    <section class="panel" id="panel-staff" hidden>
+      <div class="toolbar">
+        <p class="muted small">Medarbejdere kan logge ind og håndtere hittegods. Admins kan også oprette medarbejdere.</p>
+        <button type="button" class="btn primary" id="open-staff-dialog">+ Opret medarbejder</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Navn</th><th>Email</th><th>Rolle</th></tr></thead>
+          <tbody id="staff-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal: registrér fundet ting -->
+  <dialog id="found-dialog" class="modal">
+    <form id="found-form" class="form">
+      <div class="modal-head">
         <h2>Registrér fundet ting</h2>
-        <label>Beskrivelse <input type="text" name="description" required maxlength="500" placeholder="Fx sort lædertaske"></label>
+        <button type="button" class="icon-btn" data-close aria-label="Luk">×</button>
+      </div>
+      <label>Beskrivelse <input type="text" name="description" required maxlength="500" placeholder="Fx sort lædertaske med guldlynlås" autofocus></label>
+      <div class="row">
         <label>Fundet dato <input type="date" name="found_date" id="found_date" required></label>
         <label>Sted
           <select name="location" required>
@@ -64,39 +109,76 @@
             <option>Andet</option>
           </select>
         </label>
-        <div class="form-field">
-          <span class="field-label">Billede</span>
-          <div class="file-pick">
-            <label class="btn small">Vælg billede <input type="file" name="image" id="image" accept="image/*" hidden></label>
-            <span class="file-name" id="file-name">Intet billede valgt</span>
-          </div>
-        </div>
-        <p class="error" id="found-error" hidden></p>
-        <button type="submit" class="btn primary block" id="found-submit">Gem fundet ting</button>
-      </form>
-
-      <div class="found-grid" id="found-list"></div>
-    </section>
-
-    <!-- Medarbejdere (kun admin) -->
-    <section class="panel staff-split" id="panel-staff" hidden>
-      <form id="staff-form" class="card form">
-        <h2>Opret medarbejder</h2>
-        <label>Navn <input type="text" name="name" required maxlength="100"></label>
-        <label>Email <input type="email" name="email" required maxlength="255"></label>
-        <label>Midlertidigt password <input type="password" name="password" required minlength="8" autocomplete="new-password"></label>
-        <label class="check"><input type="checkbox" name="is_admin"> Admin</label>
-        <p class="error" id="staff-error" hidden></p>
-        <button type="submit" class="btn primary block">Opret medarbejder</button>
-      </form>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Navn</th><th>Email</th><th>Rolle</th></tr></thead>
-          <tbody id="staff-body"></tbody>
-        </table>
       </div>
-    </section>
-  </main>
+      <div class="form-field">
+        <span class="field-label">Billede</span>
+        <label class="dropzone" id="dropzone">
+          <input type="file" name="image" id="image" accept="image/*">
+          <img id="image-preview" alt="" hidden>
+          <span id="file-name">Klik for at vælge et billede</span>
+        </label>
+      </div>
+      <p class="error" id="found-error" hidden></p>
+      <div class="modal-actions">
+        <button type="button" class="btn" data-close>Annullér</button>
+        <button type="submit" class="btn primary" id="found-submit">Gem fundet ting</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Modal: match fundet ting med sag -->
+  <dialog id="match-dialog" class="modal wide">
+    <form id="match-form" class="form">
+      <div class="modal-head">
+        <h2>Match med sag</h2>
+        <button type="button" class="icon-btn" data-close aria-label="Luk">×</button>
+      </div>
+      <div class="match-item" id="match-item"></div>
+      <p class="muted small">Vælg den sag, tingen hører til. Kunden får besked med det samme.</p>
+      <div class="case-options" id="case-options"></div>
+      <p class="error" id="match-error" hidden></p>
+      <div class="modal-actions">
+        <button type="button" class="btn" data-close>Annullér</button>
+        <button type="submit" class="btn primary" id="match-submit" disabled>Match og giv kunden besked</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Modal: bekræft udlevering -->
+  <dialog id="deliver-dialog" class="modal narrow">
+    <form id="deliver-form" class="form">
+      <div class="modal-head">
+        <h2>Udlevér <span id="deliver-number"></span>?</h2>
+        <button type="button" class="icon-btn" data-close aria-label="Luk">×</button>
+      </div>
+      <p class="muted" id="deliver-text"></p>
+      <div class="modal-actions">
+        <button type="button" class="btn" data-close autofocus>Annullér</button>
+        <button type="submit" class="btn primary">Markér som udleveret</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Modal: opret medarbejder -->
+  <dialog id="staff-dialog" class="modal">
+    <form id="staff-form" class="form">
+      <div class="modal-head">
+        <h2>Opret medarbejder</h2>
+        <button type="button" class="icon-btn" data-close aria-label="Luk">×</button>
+      </div>
+      <label>Navn <input type="text" name="name" required maxlength="100" autofocus></label>
+      <label>Email <input type="email" name="email" required maxlength="255"></label>
+      <label>Midlertidigt password <input type="password" name="password" required minlength="8" autocomplete="new-password"></label>
+      <label class="check"><input type="checkbox" name="is_admin"> Admin (kan oprette medarbejdere)</label>
+      <p class="error" id="staff-error" hidden></p>
+      <div class="modal-actions">
+        <button type="button" class="btn" data-close>Annullér</button>
+        <button type="submit" class="btn primary">Opret medarbejder</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
   <script src="/js/staff.js"></script>
 </body>
