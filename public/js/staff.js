@@ -222,6 +222,10 @@ async function matchItem(foundItemId, caseId) {
 }
 
 const foundForm = document.getElementById('found-form');
+const fileName = document.getElementById('file-name');
+document.getElementById('image').addEventListener('change', (e) => {
+  fileName.textContent = e.target.files[0] ? e.target.files[0].name : 'Intet billede valgt';
+});
 document.getElementById('found_date').max = new Date().toISOString().slice(0, 10);
 document.getElementById('found_date').value = new Date().toISOString().slice(0, 10);
 
@@ -246,6 +250,7 @@ foundForm.addEventListener('submit', async (e) => {
       return;
     }
     foundForm.reset();
+    fileName.textContent = 'Intet billede valgt';
     document.getElementById('found_date').value = new Date().toISOString().slice(0, 10);
     await loadFoundItems();
   } finally {

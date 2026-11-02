@@ -64,7 +64,13 @@
             <option>Andet</option>
           </select>
         </label>
-        <label>Billede <input type="file" name="image" accept="image/*"></label>
+        <div class="form-field">
+          <span class="field-label">Billede</span>
+          <div class="file-pick">
+            <label class="btn small">Vælg billede <input type="file" name="image" id="image" accept="image/*" hidden></label>
+            <span class="file-name" id="file-name">Intet billede valgt</span>
+          </div>
+        </div>
         <p class="error" id="found-error" hidden></p>
         <button type="submit" class="btn primary block" id="found-submit">Gem fundet ting</button>
       </form>

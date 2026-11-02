@@ -16,10 +16,15 @@
 
   <main class="page narrow">
     <p class="muted" id="loading">Henter din sag …</p>
-    <p class="error" id="error" hidden></p>
+    <div class="card" id="error-card" hidden>
+      <p class="error" id="error"></p>
+      <p class="muted small">Tjek at du har brugt hele linket fra din mail eller SMS.</p>
+      <a href="/" class="btn primary small">Opret en ny sag</a>
+    </div>
 
     <section id="case" hidden>
-      <p class="eyebrow">Hotel Kastanje · Sag <span id="case-number"></span></p>
+      <img src="/img/hotel-logo-navy.png" alt="Hotel Kastanje" class="hotel-logo">
+      <p class="eyebrow">Sag <span id="case-number"></span></p>
       <h1 id="status-label"></h1>
 
       <ol class="steps" id="steps">

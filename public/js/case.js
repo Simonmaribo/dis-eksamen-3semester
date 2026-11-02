@@ -17,7 +17,7 @@ async function loadCase() {
 
     if (!res.ok) {
       document.getElementById('error').textContent = lostCase.error;
-      document.getElementById('error').hidden = false;
+      document.getElementById('error-card').hidden = false;
       return;
     }
 
@@ -45,7 +45,7 @@ async function loadCase() {
   } catch (error) {
     document.getElementById('loading').hidden = true;
     document.getElementById('error').textContent = 'Kunne ikke hente sagen. Prøv igen senere.';
-    document.getElementById('error').hidden = false;
+    document.getElementById('error-card').hidden = false;
   }
 }
 
