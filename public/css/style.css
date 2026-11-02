@@ -69,6 +69,7 @@ a { color: var(--blue); }
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
 }
+.topbar.centered { justify-content: center; }
 .topbar.dark { background: var(--navy); border-color: rgba(255, 255, 255, 0.08); }
 .brand {
   display: flex;
