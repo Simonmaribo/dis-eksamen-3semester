@@ -200,29 +200,6 @@ input[type="date"] { font-family: var(--sans); }
 .live { display: inline-flex; align-items: center; gap: 6px; color: var(--green); font-weight: 500; }
 .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
 
-.trust {
-  max-width: 1160px;
-  margin: 0 auto;
-  padding: 40px 32px 64px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-.trust div { display: grid; grid-template-columns: 24px 1fr; gap: 2px 12px; }
-.trust strong { grid-column: 2; font-weight: 600; color: var(--navy); }
-.trust span:not(.check-icon) { grid-column: 2; color: var(--ink-70); font-size: 14px; }
-.check-icon {
-  grid-column: 1;
-  grid-row: 1 / span 2;
-  width: 24px; height: 24px;
-  border-radius: 50%;
-  background: var(--green-tint);
-  color: var(--green);
-  display: grid;
-  place-items: center;
-  font-size: 13px;
-  font-weight: 700;
-}
 
 .success { text-align: left; }
 .success h2 { font-family: var(--serif); font-weight: 400; font-size: 34px; letter-spacing: -0.02em; margin-bottom: 8px; }
@@ -350,7 +327,6 @@ td.actions { text-align: right; white-space: nowrap; }
 @media (max-width: 900px) {
   .hero-inner, .split, .staff-split { grid-template-columns: 1fr; }
   .hero-inner { padding: 48px 20px 56px; gap: 36px; }
-  .trust { grid-template-columns: 1fr; padding: 32px 20px 48px; }
 }
 @media (max-width: 900px) {
   .hero-actions { display: none; }
