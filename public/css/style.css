@@ -192,8 +192,7 @@ input[type="date"] { font-family: var(--sans); }
   align-items: center;
 }
 .hero h1 { color: var(--white); }
-.hotel-logo { display: block; height: 88px; width: auto; margin: 0 0 28px; }
-#case .hotel-logo { height: 64px; margin-bottom: 24px; }
+.brand-logo { display: block; height: 44px; width: auto; }
 .hero .lead { color: rgba(255, 255, 255, 0.72); font-size: 18px; line-height: 1.55; max-width: 34ch; margin: 0 0 28px; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .hero .card { color: var(--ink); border-color: rgba(255, 255, 255, 0.4); box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.45); }
@@ -367,7 +366,7 @@ td.actions { text-align: right; white-space: nowrap; }
   #panel-cases td:nth-child(2) { min-width: 220px; }
   #panel-cases td:nth-child(3) { white-space: nowrap; }
   #panel-cases td.actions:empty { padding: 0; }
-  .hero .hotel-logo { width: 140px; height: auto; }
+  .brand-logo { height: 36px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .btn, .btn .arrow { transition: none; }
