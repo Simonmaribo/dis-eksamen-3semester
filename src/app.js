@@ -59,7 +59,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/cases', caseRoutes);
 app.use('/api/found-items', requireLogin, foundItemRoutes);
 app.use('/api/staff', requireLogin, staffRoutes);
-app.use('/webhooks', webhookRoutes);
+app.use('/api/webhooks', webhookRoutes);
 
 // Kundens sagsside. Selve sagen hentes bagefter med fetch fra /api/cases/public/:token
 app.get('/sag/:token', (req, res) => {

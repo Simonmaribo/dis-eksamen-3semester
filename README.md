@@ -31,7 +31,7 @@ scripts/               opret tabeller og første admin
 |---|---|---|---|
 | POST | `/api/cases` | Kunde | Opret sag fra webformular |
 | GET | `/api/cases/public/:token` | Kunde | Se status på egen sag |
-| POST | `/webhooks/sms` | Twilio | Indgående SMS opretter sag, svar er TwiML |
+| POST | `/api/webhooks/sms` | Twilio | Indgående SMS opretter sag, svar er TwiML |
 | POST | `/api/auth/login` | Personale | Log ind (session-cookie) |
 | POST | `/api/auth/logout` | Personale | Log ud |
 | GET | `/api/auth/me` | Personale | Hvem er logget ind |
@@ -69,7 +69,7 @@ Uden Twilio-, SMTP- eller Cloudinary-nøgler i `.env` virker appen stadig: SMS'e
 ### Test SMS-webhook lokalt
 
 ```bash
-curl -X POST http://localhost:3000/webhooks/sms \
+curl -X POST http://localhost:3000/api/webhooks/sms \
   --data-urlencode "From=+4512345678" \
   --data-urlencode "Body=Jeg har mistet min sorte taske" \
   --data-urlencode "MessageSid=SMtest1"
