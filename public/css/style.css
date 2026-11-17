@@ -177,6 +177,8 @@ input[type="date"] { font-family: var(--sans); }
 
 /* ---------- Forside (kunde) ---------- */
 
+body:has(.site-footer) { min-height: 100vh; display: flex; flex-direction: column; }
+body:has(.site-footer) .hero { flex: 1; }
 .hero {
   background:
     radial-gradient(1200px 500px at 85% -10%, rgba(0, 112, 168, 0.35), transparent 60%),
@@ -516,4 +518,22 @@ td.nowrap { white-space: nowrap; }
   .tabs::-webkit-scrollbar { display: none; }
   .tab { padding: 10px 11px; }
   .count { margin-left: 4px; }
+}
+
+/* ---------- Footer på forsiden ---------- */
+
+.site-footer { background: var(--navy-deep); color: rgba(255, 255, 255, 0.7); font-size: 14px; }
+.site-footer-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 20px 32px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+}
+.site-footer a { color: var(--white); font-weight: 600; text-decoration: none; white-space: nowrap; }
+.site-footer a:hover { text-decoration: underline; }
+@media (max-width: 600px) {
+  .site-footer-inner { padding: 18px 20px; flex-direction: column; }
 }
