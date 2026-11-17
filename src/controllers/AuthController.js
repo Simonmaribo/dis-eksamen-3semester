@@ -18,10 +18,14 @@ class AuthController {
         return;
       }
 
+      // Nyt session-id ved login, så et id sat før login ikke kan genbruges (session fixation).
       // Session-id'et gemmes i en cookie hos browseren, selve sessionen i MySQL
-      req.session.staffId = staff.id;
-      req.session.isAdmin = staff.is_admin;
-      res.json(staff);
+      req.session.regenerate((err) => {
+        if (err) return next(err);
+        req.session.staffId = staff.id;
+        req.session.isAdmin = staff.is_admin;
+        res.json(staff);
+      });
     } catch (error) {
       next(error);
     }
